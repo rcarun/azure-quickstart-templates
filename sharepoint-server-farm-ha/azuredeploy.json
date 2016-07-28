@@ -224,15 +224,17 @@
     "_artifactsLocation": {
       "type": "string",
       "metadata": {
-        "description": "Base URL for Marketplace"
-      }
+        "description": "Change this value to your repo name if deploying from a fork"
+      },
+      "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/sharepoint-server-farm-ha"
     },
     "_artifactsLocationSasToken": {
       "type": "securestring",
       "metadata": {
         "description": "Auto-generated token to access _artifactsLocation",
         "artifactsLocationSasToken": ""
-      }
+      },
+      "defaultValue": ""
     }
   },
   "variables": {
