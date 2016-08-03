@@ -294,7 +294,7 @@
       "sqlImageSKU": "Enterprise",
       "spImagePublisher": "MicrosoftSharePoint",
       "spImageOffer": "MicrosoftSharePointServer",
-      "spImageSKU": "2013",
+      "spImageSKU": "2016",
       "rdpPort": 3389,
       "spCentralAdminPort": 80,
       "windowsDiskSize": 128,
@@ -373,48 +373,8 @@
       }
     ],
     "configuration": {
-      "vnetwithDNSTemplateURL": "[concat(variables('nestedTemplatesLocation'),'/vnet-with-dns-server.json')]",
-      "nicTemplateURL": "[concat(variables('nestedTemplatesLocation'),'/nic.json')]",
-      "adPDCModulesURL": "[concat(variables('assetLocation'),'/CreateADPDC.ps1.zip')]",
-      "adPDCConfigurationFunction": "CreateADPDC.ps1\\CreateADPDC",
-      "adBDCPreparationModulesURL": "[concat(variables('assetLocation'),'/PrepareADBDC.ps1.zip')]",
-      "adBDCPreparationFunction": "PrepareADBDC.ps1\\PrepareADBDC",
-      "adBDCConfigurationModulesURL": "[concat(variables('assetLocation'),'/ConfigureADBDC.ps1.zip')]",
-      "adBDCConfigurationFunction": "ConfigureADBDC.ps1\\ConfigureADBDC",
-      "fswConfigurationModulesURL": "[concat(variables('assetLocation'),'/ConfigureFileShareWitness.ps1.zip')]",
-      "fswConfigurationFunction": "ConfigureFileShareWitness.ps1\\ConfigureFileShareWitness",
-      "fswPreparationModulesURL": "[concat(variables('assetLocation'),'/PrepareFileShareWitness.ps1.zip')]",
-      "fswPreparationFunction": "PrepareFileShareWitness.ps1\\PrepareFileShareWitness",
-      "sqlAOPrepareModulesURL": "[concat(variables('assetLocation'),'/PrepareAlwaysOnSqlServer.ps1.zip')]",
-      "sqlAOPrepareFunction": "PrepareAlwaysOnSqlServer.ps1\\PrepareAlwaysOnSqlServer",
-      "sqlAOConfigurationModulesURL": "[concat(variables('assetLocation'),'/ConfigureAlwaysOnSqlServer.ps1.zip')]",
-      "sqlAOConfigurationFunction": "ConfigureAlwaysOnSqlServer.ps1\\ConfigureAlwaysOnSqlServer",
-      "prepareClusterModulesURL": "[concat(variables('assetLocation'),'/PrepareFailoverCluster.ps1.zip')]",
-      "prepareClusterConfigurationFunction": "PrepareFailoverCluster.ps1\\PrepareFailoverCluster",
-      "configureClusterModulesURL": "[concat(variables('assetLocation'),'/ConfigureFailoverCluster.ps1.zip')]",
-      "configureClusterConfigurationFunction": "ConfigureFailoverCluster.ps1\\ConfigureFailoverCluster",
-      "spConfigurationModulesURL": "[concat(variables('assetLocation'),'/ConfigureSharePointServerHA.ps1.zip')]",
-      "spConfigurationFunction": "ConfigureSharePointServerHA.ps1\\ConfigureSharePointServerHA",
-      "spPreparationModulesURL": "[concat(variables('assetLocation'),'/PrepareSharePointServerHA.ps1.zip')]",
-      "spPreparationFunction": "PrepareSharePointServerHA.ps1\\PrepareSharePointServerHA",
-      "spWebIPAdressSetupURL": "[concat(variables('nestedTemplatesLocation'),'/publicip-',parameters('spWebIPNewOrExisting'),'.json')]",
-      "spCAIPAdressSetupURL": "[concat(variables('nestedTemplatesLocation'),'/publicip-','new.json')]",
-      "rdpIPAdressSetupURL": "[concat(variables('nestedTemplatesLocation'),'/publicip-rdp.json')]",
-      "availabilitySetSetupURL": "[concat(variables('nestedTemplatesLocation'),'/availabilitySets.json')]",
-      "provisioningPrimaryDCURL": "[concat(variables('nestedTemplatesLocation'),'/provisioningPrimaryDomainController.json')]",
-      "provisioningBackupDCURL": "[concat(variables('nestedTemplatesLocation'),'/provisioningBackupDomainController.json')]",
-      "configuringBackupDCURL": "[concat(variables('nestedTemplatesLocation'),'/configuringBackupDomainController.json')]",
-      "configuringSQLAlwaysOnClusterUrl": "[concat(variables('nestedTemplatesLocation'),'/configuringSQLAlwaysOnCluster.json')]",
-      "provisioningSharepointVMsURL": "[concat(variables('nestedTemplatesLocation'),'/provisioningSharepointVMs.json')]",
-      "configuringSharepointUrl": "[concat(variables('nestedTemplatesLocation'),'/configuringSharePoint.json')]",
-      "creatingStorageAccounts": "[concat(variables('nestedTemplatesLocation'),'/creatingStorageAccounts.json')]",
-      "provisioningSQLVMsURL": "[concat(variables('nestedTemplatesLocation'),'/provisioningSQLVMs.json')]",
-      "vnetSetupURL": "[concat(variables('nestedTemplatesLocation'),'/vnet-new.json')]",
-      "setupLBsUrl": "[concat(variables('nestedTemplatesLocation'),'/setupLBs.json')]",
-      "creatingNicsUrl": "[concat(variables('nestedTemplatesLocation'),'/creatingNICS.json')]"
-    },
-    "assetLocation": "[concat(parameters('_artifactsLocation'), '/dscv2')]",
-    "nestedTemplatesLocation": "[concat(parameters('_artifactsLocation'), '/nestedtemplates')]"
+      "nicTemplateURL": "[concat(parameters('_artifactsLocation'), '/', 'nestedtemplates', '/','nic.json', parameters('_artifactsLocationSasToken'))]"
+    }
   },
   "resources": [
     {
@@ -424,7 +384,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('configuration').creatingStorageAccounts]",
+          "uri": "[concat(parameters('_artifactsLocation'),'/','nestedtemplates','/','creatingStorageAccounts.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -447,7 +407,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('configuration').rdpIPAdressSetupURL]",
+          "uri": "[concat(parameters('_artifactsLocation'),'/','nestedtemplates','/','publicip-rdp.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -482,7 +442,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('configuration').spWebIPAdressSetupURL]",
+          "uri": "[concat(parameters('_artifactsLocation'),'/','nestedtemplates','/','publicip-',parameters('spWebIPNewOrExisting'),'.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -511,7 +471,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('configuration').spCAIPAdressSetupURL]",
+          "uri": "[concat(parameters('_artifactsLocation'),'/','nestedtemplates','/','publicip-','new.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -540,7 +500,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('configuration').availabilitySetSetupURL]",
+          "uri": "[concat(parameters('_artifactsLocation'),'/','nestedtemplates','/','availabilitySets.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -569,7 +529,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('configuration').vnetSetupURL]",
+          "uri": "[concat(parameters('_artifactsLocation'),'/','nestedtemplates','/','vnet-new.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -601,7 +561,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('configuration').setupLBsUrl]",
+          "uri": "[concat(parameters('_artifactsLocation'),'/','nestedtemplates','/','setupLBs.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -692,7 +652,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('configuration').creatingNicsUrl]",
+          "uri": "[concat(parameters('_artifactsLocation'),'/','nestedtemplates','/','creatingNICS.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -769,7 +729,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('configuration').provisioningPrimaryDCURL]",
+          "uri": "[concat(parameters('_artifactsLocation'),'/','nestedtemplates','/','provisioningPrimaryDomainController.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -813,10 +773,10 @@
             "value": "[parameters('domainName')]"
           },
           "adPDCConfigurationFunction": {
-            "value": "[variables('configuration').adPDCConfigurationFunction]"
+            "value": "CreateADPDC.ps1\\CreateADPDC"
           },
           "adPDCModulesURL": {
-            "value": "[variables('configuration').adPDCModulesURL]"
+            "value": "[concat(parameters('_artifactsLocation'),'/','DSC','/','CreateADPDC.ps1.zip', parameters('_artifactsLocationSasToken'))]"
           }
         }
       }
@@ -831,7 +791,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('configuration').vnetwithDNSTemplateURL]",
+          "uri": "[concat(parameters('_artifactsLocation'), '/', 'nestedtemplates', '/','vnet-with-dns-server.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -867,7 +827,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('configuration').provisioningBackupDCURL]",
+          "uri": "[concat(parameters('_artifactsLocation'),'/','nestedtemplates','/','provisioningBackupDomainController.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -911,10 +871,10 @@
             "value": "[parameters('adPDCNICIPAddress')]"
           },
           "adBDCPreparationFunction": {
-            "value": "[variables('configuration').adBDCPreparationFunction]"
+            "value": "PrepareADBDC.ps1\\PrepareADBDC"
           },
           "adBDCPreparationModulesURL": {
-            "value": "[variables('configuration').adBDCPreparationModulesURL]"
+            "value": "[concat(parameters('_artifactsLocation'),'/','DSC','/','PrepareADBDC.ps1.zip', parameters('_artifactsLocationSasToken'))]"
           }
         }
       }
@@ -930,7 +890,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('configuration').configuringBackupDCURL]",
+          "uri": "[concat(parameters('_artifactsLocation'),'/','nestedtemplates','/','configuringBackupDomainController.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -950,10 +910,10 @@
             "value": "[parameters('domainName')]"
           },
           "adBDCConfigurationFunction": {
-            "value": "[variables('configuration').adBDCConfigurationFunction]"
+            "value": "ConfigureADBDC.ps1\\ConfigureADBDC"
           },
           "adBDCConfigurationModulesURL": {
-            "value": "[variables('configuration').adBDCConfigurationModulesURL]"
+            "value": "[concat(parameters('_artifactsLocation'),'/','DSC','/','ConfigureADBDC.ps1.zip', parameters('_artifactsLocationSasToken'))]"
           }
         }
       }
@@ -968,7 +928,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('configuration').vnetwithDNSTemplateURL]",
+          "uri": "[concat(parameters('_artifactsLocation'), '/', 'nestedtemplates', '/','vnet-with-dns-server.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -1005,7 +965,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('configuration').provisioningSQLVMsURL]",
+          "uri": "[concat(parameters('_artifactsLocation'),'/','nestedtemplates','/','provisioningSQLVMs.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -1055,16 +1015,16 @@
             "value": "[parameters('domainName')]"
           },
           "sqlAOPrepareModulesURL": {
-            "value": "[variables('configuration').sqlAOPrepareModulesURL]"
+            "value": "[concat(parameters('_artifactsLocation'),'/','DSC','/','PrepareAlwaysOnSqlServer.ps1.zip', parameters('_artifactsLocationSasToken'))]"
           },
           "sqlAOPrepareFunction": {
-            "value": "[variables('configuration').sqlAOPrepareFunction]"
+            "value": "PrepareAlwaysOnSqlServer.ps1\\PrepareAlwaysOnSqlServer"
           },
           "prepareClusterModulesURL": {
-            "value": "[variables('configuration').prepareClusterModulesURL]"
+            "value": "[concat(parameters('_artifactsLocation'),'/','DSC','/','PrepareFailoverCluster.ps1.zip', parameters('_artifactsLocationSasToken'))]"
           },
           "prepareClusterConfigurationFunction": {
-            "value": "[variables('configuration').prepareClusterConfigurationFunction]"
+            "value": "PrepareFailoverCluster.ps1\\PrepareFailoverCluster"
           },
           "sharePath": {
             "value": "[variables('sharePath')]"
@@ -1079,10 +1039,10 @@
             "value": "[variables('sqlwNicName')]"
           },
           "fswPreparationModulesURL": {
-            "value": "[variables('configuration').fswPreparationModulesURL]"
+            "value": "[concat(parameters('_artifactsLocation'),'/','DSC','/','PrepareFileShareWitness.ps1.zip', parameters('_artifactsLocationSasToken'))]"
           },
           "fswPreparationFunction": {
-            "value": "[variables('configuration').fswPreparationFunction]"
+            "value": "PrepareFileShareWitness.ps1\\PrepareFileShareWitness"
           },
           "DNSServer": {
             "value": "[parameters('adPDCNICIPAddress')]"
@@ -1101,7 +1061,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('configuration').configuringSQLAlwaysOnClusterUrl]",
+          "uri": "[concat(parameters('_artifactsLocation'),'/','nestedtemplates','/','configuringSQLAlwaysOnCluster.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -1121,10 +1081,10 @@
             "value": "[parameters('domainName')]"
           },
           "sqlAOConfigurationModulesURL": {
-            "value": "[variables('configuration').sqlAOConfigurationModulesURL]"
+            "value": "[concat(parameters('_artifactsLocation'),'/','DSC','/','ConfigureAlwaysOnSqlServer.ps1.zip', parameters('_artifactsLocationSasToken'))]"
           },
           "sqlAOConfigurationFunction": {
-            "value": "[variables('configuration').sqlAOConfigurationFunction]"
+            "value": "ConfigureAlwaysOnSqlServer.ps1\\ConfigureAlwaysOnSqlServer"
           },
           "sqlAOEPName": {
             "value": "[variables('sqlAOEPName')]"
@@ -1142,10 +1102,10 @@
             "value": "[parameters('sharePointSetupUserAccountPassword')]"
           },
           "configureClusterModulesURL": {
-            "value": "[variables('configuration').configureClusterModulesURL]"
+            "value": "[concat(parameters('_artifactsLocation'),'/','DSC','/','ConfigureFailoverCluster.ps1.zip', parameters('_artifactsLocationSasToken'))]"
           },
           "configureClusterConfigurationFunction": {
-            "value": "[variables('configuration').configureClusterConfigurationFunction]"
+            "value": "ConfigureFailoverCluster.ps1\\ConfigureFailoverCluster"
           },
           "clusterName": {
             "value": "[variables('clusterName')]"
@@ -1172,10 +1132,10 @@
             "value": "[variables('vmSettings').sqlwVMName]"
           },
           "fswConfigurationModulesURL": {
-            "value": "[variables('configuration').fswConfigurationModulesURL]"
+            "value": "[concat(parameters('_artifactsLocation'),'/','DSC','/','ConfigureFileShareWitness.ps1.zip', parameters('_artifactsLocationSasToken'))]"
           },
           "fswConfigurationFunction": {
-            "value": "[variables('configuration').fswConfigurationFunction]"
+            "value": "ConfigureFileShareWitness.ps1\\ConfigureFileShareWitness"
           }
         }
       }
@@ -1192,7 +1152,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('configuration').provisioningSharepointVMsURL]",
+          "uri": "[concat(parameters('_artifactsLocation'),'/','nestedtemplates','/','provisioningSharepointVMs.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -1236,10 +1196,10 @@
             "value": "[parameters('storageAccountNamePrefix')]"
           },
           "spPreparationModulesURL": {
-            "value": "[variables('configuration').spPreparationModulesURL]"
+            "value": "[concat(parameters('_artifactsLocation'),'/','DSC','/','PrepareSharePointServerHA.ps1.zip', parameters('_artifactsLocationSasToken'))]"
           },
           "spPreparationFunction": {
-            "value": "[variables('configuration').spPreparationFunction]"
+            "value": "PrepareSharePointServerHA.ps1\\PrepareSharePointServerHA"
           },
           "domainName": {
             "value": "[parameters('domainName')]"
@@ -1261,7 +1221,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[variables('configuration').configuringSharepointUrl]",
+          "uri": "[concat(parameters('_artifactsLocation'),'/','nestedtemplates','/','configuringSharePoint.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -1275,10 +1235,10 @@
             "value": "[parameters('location')]"
           },
           "spConfigurationModulesURL": {
-            "value": "[variables('configuration').spConfigurationModulesURL]"
+            "value": "[concat(parameters('_artifactsLocation'),'/','DSC','/','ConfigureSharePointServerHA.ps1.zip', parameters('_artifactsLocationSasToken'))]"
           },
           "spConfigurationFunction": {
-            "value": "[variables('configuration').spConfigurationFunction]"
+            "value": "ConfigureSharePointServerHA.ps1\\ConfigureSharePointServerHA"
           },
           "domainName": {
             "value": "[parameters('domainName')]"

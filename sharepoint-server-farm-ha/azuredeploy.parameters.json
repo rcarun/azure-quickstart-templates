@@ -1,12 +1,12 @@
 {
-  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
     "adminUsername": {
-      "value": "arroyc"
+      "value": "admin123"
     },
     "adminPassword": {
-      "value": "Arjun#123msft"
+      "value": "GEN-PASSWORD"
     },
     "sharepointFarmName": {
       "value": "SharepointFarm"
@@ -15,22 +15,22 @@
       "value": "sqlservice"
     },
     "sqlServerServiceAccountPassword": {
-      "value": "Arjun#123msft"
+      "value": "GEN-PASSWORD"
     },
     "sharePointSetupUserAccountUserName": {
       "value": "spsetup"
     },
     "sharePointSetupUserAccountPassword": {
-      "value": "Arjun#123msft"
+      "value": "GEN-PASSWORD"
     },
     "sharePointFarmAccountPassword": {
       "value": "Admin123sp!farm"
     },
     "sharePointFarmPassphrasePassword": {
-      "value": "Arjun#123msft"
+      "value": "GEN-PASSWORD"
     },
     "spWebIPRGName": {
-      "value": "arjunweblprg2016"
+      "value": "GEN-UNIQUE-10"
     },
     "spWebIPAddressName": {
       "value": "spWebIp"
@@ -39,10 +39,10 @@
       "value": "new"
     },
     "dnsPrefix": {
-      "value": "abcd1arjun"
+      "value": "GEN-UNIQUE"
     },
     "storageAccountNamePrefix": {
-      "value": "abcd2arjun"
+      "value": "GEN-UNIQUE"
     },
     "storageAccountType": {
       "value": "Premium_LRS"

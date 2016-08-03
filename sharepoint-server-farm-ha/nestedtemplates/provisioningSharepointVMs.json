@@ -86,7 +86,7 @@
           "osDisk": {
             "name": "osdisk",
             "vhd": {
-              "uri": "[concat('http://',parameters('storageAccountNamePrefix'),'3.blob.core.windows.net/',parameters('vmContainerName'),'/',parameters('spappVMName'), copyindex(),'-osdisk.vhd')]"
+              "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '3')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/',parameters('spappVMName'), copyindex(),'-osdisk.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
@@ -94,7 +94,7 @@
           "dataDisks": [
             {
               "vhd": {
-                "uri": "[concat('http://',parameters('storageAccountNamePrefix'),'3.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('spappVMName'), copyindex(), '-Data-1.vhd')]"
+                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '3')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/', parameters('spappVMName'), copyindex(), '-Data-1.vhd')]"
               },
               "name": "[concat(parameters('spappVMName'), copyindex(),'-data-disk1')]",
               "caching": "None",
@@ -114,7 +114,7 @@
         "diagnosticsProfile": {
           "bootDiagnostics": {
             "enabled": "true",
-            "storageUri": "[concat('http://',parameters('storageAccountNamePrefix'),'4.blob.core.windows.net')]"
+            "storageUri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '4')), '2016-01-01').primaryEndpoints.blob)]"
           }
         }
       }
@@ -178,7 +178,7 @@
           "osDisk": {
             "name": "osdisk",
             "vhd": {
-              "uri": "[concat('http://',parameters('storageAccountNamePrefix'),'3.blob.core.windows.net/',parameters('vmContainerName'),'/',parameters('spwebVMName'), copyindex(),'-osdisk.vhd')]"
+              "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '3')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/',parameters('spwebVMName'), copyindex(),'-osdisk.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
@@ -186,7 +186,7 @@
           "dataDisks": [
             {
               "vhd": {
-                "uri": "[concat('http://',parameters('storageAccountNamePrefix'),'3.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('spwebVMName'), copyindex(), '-Data-1.vhd')]"
+                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '3')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/', parameters('spwebVMName'), copyindex(), '-Data-1.vhd')]"
               },
               "name": "[concat(parameters('spwebVMName'), copyindex(),'-data-disk1')]",
               "caching": "None",
@@ -206,7 +206,7 @@
         "diagnosticsProfile": {
           "bootDiagnostics": {
             "enabled": "true",
-            "storageUri": "[concat('http://',parameters('storageAccountNamePrefix'),'4.blob.core.windows.net')]"
+            "storageUri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '4')), '2016-01-01').primaryEndpoints.blob)]"
           }
         }
       }

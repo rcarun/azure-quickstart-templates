@@ -109,7 +109,7 @@
           "osDisk": {
             "name": "osdisk",
             "vhd": {
-              "uri": "[concat('http://',parameters('storageAccountNamePrefix'),'2.blob.core.windows.net/',parameters('vmContainerName'),'/',parameters('sqlwVMName'),'-osdisk.vhd')]"
+              "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '2')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/',parameters('sqlwVMName'),'-osdisk.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
@@ -117,7 +117,7 @@
           "dataDisks": [
             {
               "vhd": {
-                "uri": "[concat('http://',parameters('storageAccountNamePrefix'),'2.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('sqlwVMName'),'-data-1.vhd')]"
+                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '2')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/', parameters('sqlwVMName'),'-data-1.vhd')]"
               },
               "name": "[concat(parameters('sqlwVMName'),'-data-disk1')]",
               "caching": "None",
@@ -137,7 +137,7 @@
         "diagnosticsProfile": {
           "bootDiagnostics": {
             "enabled": "true",
-            "storageUri": "[concat('http://',parameters('storageAccountNamePrefix'),'4.blob.core.windows.net')]"
+            "storageUri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '4')), '2016-01-01').primaryEndpoints.blob)]"
           }
         }
       },
@@ -199,7 +199,7 @@
           "osDisk": {
             "name": "osdisk",
             "vhd": {
-              "uri": "[concat('http://',parameters('storageAccountNamePrefix'),'2.blob.core.windows.net/',parameters('vmContainerName'),'/',parameters('sqlVMName'), copyindex(), '-osdisk.vhd')]"
+              "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '2')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/',parameters('sqlVMName'), copyindex(), '-osdisk.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
@@ -207,7 +207,7 @@
           "dataDisks": [
             {
               "vhd": {
-                "uri": "[concat('http://',parameters('storageAccountNamePrefix'),'2.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('sqlVMName'), copyindex(), '-Data-1.vhd')]"
+                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '2')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/', parameters('sqlVMName'), copyindex(), '-Data-1.vhd')]"
               },
               "name": "[concat(parameters('sqlVMName'), copyindex(),'-data-disk1')]",
               "caching": "None",
@@ -217,7 +217,7 @@
             },
             {
               "vhd": {
-                "uri": "[concat('http://',parameters('storageAccountNamePrefix'),'2.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('sqlVMName'), copyindex(), '-log.vhd')]"
+                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '2')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/', parameters('sqlVMName'), copyindex(), '-log.vhd')]"
               },
               "name": "[concat(parameters('sqlVMName'), copyindex(),'-log-disk1')]",
               "caching": "None",
@@ -237,7 +237,7 @@
         "diagnosticsProfile": {
           "bootDiagnostics": {
             "enabled": "true",
-            "storageUri": "[concat('http://',parameters('storageAccountNamePrefix'),'4.blob.core.windows.net')]"
+            "storageUri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '4')), '2016-01-01').primaryEndpoints.blob)]"
           }
         }
       }
