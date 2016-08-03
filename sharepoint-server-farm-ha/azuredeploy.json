@@ -371,10 +371,7 @@
           "addressPrefix": "[parameters('spAppSubnet')]"
         }
       }
-    ],
-    "configuration": {
-      "nicTemplateURL": "[concat(parameters('_artifactsLocation'), '/', 'nestedtemplates', '/','nic.json', parameters('_artifactsLocationSasToken'))]"
-    }
+    ]
   },
   "resources": [
     {
@@ -471,7 +468,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[concat(parameters('_artifactsLocation'),'/','nestedtemplates','/','publicip-','new.json', parameters('_artifactsLocationSasToken'))]",
+          "uri": "[concat(parameters('_artifactsLocation'),'/','nestedtemplates','/','publicip-new.json', parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
