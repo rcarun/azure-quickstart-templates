@@ -171,7 +171,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Compute/virtualMachines",
-      "name": "[concat(parameters('sqlVMName'), copyindex())]",
+      "name": "[concat(parameters('sqlVMName'), copyIndex())]",
       "location": "[parameters('location')]",
       "copy": {
         "name": "sqlvirtualMachineLoop",
@@ -185,7 +185,7 @@
           "id": "[parameters('availabilitySet')]"
         },
         "osProfile": {
-          "computerName": "[concat(parameters('sqlVMName'), copyindex())]",
+          "computerName": "[concat(parameters('sqlVMName'), copyIndex())]",
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('adminPassword')]"
         },
@@ -199,7 +199,7 @@
           "osDisk": {
             "name": "osdisk",
             "vhd": {
-              "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '2')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/',parameters('sqlVMName'), copyindex(), '-osdisk.vhd')]"
+              "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '2')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/',parameters('sqlVMName'), copyIndex(), '-osdisk.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
@@ -207,9 +207,9 @@
           "dataDisks": [
             {
               "vhd": {
-                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '2')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/', parameters('sqlVMName'), copyindex(), '-Data-1.vhd')]"
+                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '2')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/', parameters('sqlVMName'), copyIndex(), '-Data-1.vhd')]"
               },
-              "name": "[concat(parameters('sqlVMName'), copyindex(),'-data-disk1')]",
+              "name": "[concat(parameters('sqlVMName'), copyIndex(),'-data-disk1')]",
               "caching": "None",
               "createOption": "Empty",
               "diskSizeGB": "1000",
@@ -217,9 +217,9 @@
             },
             {
               "vhd": {
-                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '2')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/', parameters('sqlVMName'), copyindex(), '-log.vhd')]"
+                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '2')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/', parameters('sqlVMName'), copyIndex(), '-log.vhd')]"
               },
-              "name": "[concat(parameters('sqlVMName'), copyindex(),'-log-disk1')]",
+              "name": "[concat(parameters('sqlVMName'), copyIndex(),'-log-disk1')]",
               "caching": "None",
               "createOption": "Empty",
               "diskSizeGB": "1000",
@@ -230,7 +230,7 @@
         "networkProfile": {
           "networkInterfaces": [
             {
-              "id": "[resourceId(resourceGroup().name,'Microsoft.Network/networkInterfaces',concat(parameters('sqlVMName'), copyindex(),'-nic'))]"
+              "id": "[resourceId(resourceGroup().name,'Microsoft.Network/networkInterfaces',concat(parameters('sqlVMName'), copyIndex(),'-nic'))]"
             }
           ]
         },

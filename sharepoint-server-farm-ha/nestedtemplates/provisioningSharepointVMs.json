@@ -58,7 +58,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Compute/virtualMachines",
-      "name": "[concat(parameters('spappVMName'), copyindex())]",
+      "name": "[concat(parameters('spappVMName'), copyIndex())]",
       "location": "[parameters('location')]",
       "copy": {
         "name": "spAppVMLoop",
@@ -72,7 +72,7 @@
           "id": "[parameters('spAppAvailabilitySet')]"
         },
         "osProfile": {
-          "computerName": "[concat(parameters('spappVMName'), copyindex())]",
+          "computerName": "[concat(parameters('spappVMName'), copyIndex())]",
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('adminPassword')]"
         },
@@ -86,7 +86,7 @@
           "osDisk": {
             "name": "osdisk",
             "vhd": {
-              "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '3')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/',parameters('spappVMName'), copyindex(),'-osdisk.vhd')]"
+              "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '3')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/',parameters('spappVMName'), copyIndex(),'-osdisk.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
@@ -94,9 +94,9 @@
           "dataDisks": [
             {
               "vhd": {
-                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '3')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/', parameters('spappVMName'), copyindex(), '-Data-1.vhd')]"
+                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '3')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/', parameters('spappVMName'), copyIndex(), '-Data-1.vhd')]"
               },
-              "name": "[concat(parameters('spappVMName'), copyindex(),'-data-disk1')]",
+              "name": "[concat(parameters('spappVMName'), copyIndex(),'-data-disk1')]",
               "caching": "None",
               "createOption": "Empty",
               "diskSizeGB": "128",
@@ -107,7 +107,7 @@
         "networkProfile": {
           "networkInterfaces": [
             {
-              "id": "[resourceId(resourceGroup().name,'Microsoft.Network/networkInterfaces',concat(parameters('spappVMName'), copyindex(),'-nic'))]"
+              "id": "[resourceId(resourceGroup().name,'Microsoft.Network/networkInterfaces',concat(parameters('spappVMName'), copyIndex(),'-nic'))]"
             }
           ]
         },
@@ -121,11 +121,11 @@
     },
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "[concat(parameters('spappVMName'), copyindex(),'/ConfigureSPAppServer')]",
+      "name": "[concat(parameters('spappVMName'), copyIndex(),'/ConfigureSPAppServer')]",
       "apiVersion": "2015-06-15",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('spappVMName'),string(copyindex())))]"
+        "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('spappVMName'),copyIndex()))]"
       ],
       "copy": {
         "name": "spAppPrepareLoop",
@@ -150,7 +150,7 @@
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Compute/virtualMachines",
-      "name": "[concat(parameters('spwebVMName'), copyindex())]",
+      "name": "[concat(parameters('spwebVMName'), copyIndex())]",
       "location": "[parameters('location')]",
       "copy": {
         "name": "spWebVMLoop",
@@ -164,7 +164,7 @@
           "id": "[parameters('spWebAvailabilitySet')]"
         },
         "osProfile": {
-          "computerName": "[concat(parameters('spwebVMName'), copyindex())]",
+          "computerName": "[concat(parameters('spwebVMName'), copyIndex())]",
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('adminPassword')]"
         },
@@ -178,7 +178,7 @@
           "osDisk": {
             "name": "osdisk",
             "vhd": {
-              "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '3')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/',parameters('spwebVMName'), copyindex(),'-osdisk.vhd')]"
+              "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '3')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/',parameters('spwebVMName'), copyIndex(),'-osdisk.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
@@ -186,9 +186,9 @@
           "dataDisks": [
             {
               "vhd": {
-                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '3')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/', parameters('spwebVMName'), copyindex(), '-Data-1.vhd')]"
+                "uri": "[concat(reference(resourceId('Microsoft.Storage/storageAccounts/', concat(parameters('storageAccountNamePrefix'), '3')), '2016-01-01').primaryEndpoints.blob, parameters('vmContainerName'),'/', parameters('spwebVMName'), copyIndex(), '-Data-1.vhd')]"
               },
-              "name": "[concat(parameters('spwebVMName'), copyindex(),'-data-disk1')]",
+              "name": "[concat(parameters('spwebVMName'), copyIndex(),'-data-disk1')]",
               "caching": "None",
               "createOption": "Empty",
               "diskSizeGB": "128",
@@ -199,7 +199,7 @@
         "networkProfile": {
           "networkInterfaces": [
             {
-              "id": "[resourceId(resourceGroup().name,'Microsoft.Network/networkInterfaces',concat(parameters('spwebVMName'), copyindex(),'-nic'))]"
+              "id": "[resourceId(resourceGroup().name,'Microsoft.Network/networkInterfaces',concat(parameters('spwebVMName'), copyIndex(),'-nic'))]"
             }
           ]
         },
@@ -213,11 +213,11 @@
     },
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "[concat(parameters('spwebVMName'), copyindex(),'/ConfigureSPWebServer')]",
+      "name": "[concat(parameters('spwebVMName'), copyIndex(),'/ConfigureSPWebServer')]",
       "apiVersion": "2015-06-15",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('spwebVMName'),string(copyindex())))]"
+        "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('spwebVMName'),copyIndex()))]"
       ],
       "copy": {
         "name": "spWebPrepareLoop",

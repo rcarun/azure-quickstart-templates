@@ -112,7 +112,7 @@
       }
     },
     {
-      "name": "[concat(parameters('sqlVMName'), copyindex(),'-nic')]",
+      "name": "[concat(parameters('sqlVMName'), copyIndex(),'-nic')]",
       "type": "Microsoft.Network/networkInterfaces",
       "location": "[parameters('location')]",
       "apiVersion": "2015-06-15",
@@ -159,7 +159,7 @@
       }
     },
     {
-      "name": "[concat(parameters('spwebVMName'), copyindex(),'-nic')]",
+      "name": "[concat(parameters('spwebVMName'), copyIndex(),'-nic')]",
       "type": "Microsoft.Network/networkInterfaces",
       "location": "[parameters('location')]",
       "apiVersion": "2015-06-15",
