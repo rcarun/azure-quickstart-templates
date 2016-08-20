@@ -28,7 +28,7 @@
     "adminPassword": {
       "type": "securestring",
       "minLength": 8,
-      "maxLength": 12
+      "maxLength": 12,
       "metadata": {
         "description": "Local administrator password, complex password is required, need a special character, do not use any variation of the password word because it will be rejected."
       }
