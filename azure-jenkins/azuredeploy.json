@@ -11,7 +11,7 @@
     },
     "newVmName": {
       "type": "string",
-      "defaultValue": "UbuntuJenkinsMaster",
+      "defaultValue": "TrialJenkinsVM",
       "minLength": 3,
       "maxLength": 15,
       "metadata": {
@@ -20,7 +20,7 @@
     },
     "adminUserName": {
       "type": "string",
-      "minLength": 1,
+      "minLength": 5,
       "metadata": {
         "description": "Name of the local administrator account, this cannot be Admin, Administrator or root."
       }
@@ -28,8 +28,9 @@
     "adminPassword": {
       "type": "securestring",
       "minLength": 8,
+      "maxLength": 12
       "metadata": {
-        "description": "Local administrator password, complex password is required, do not use any variation of the password word because it will be rejected."
+        "description": "Local administrator password, complex password is required, need a special character, do not use any variation of the password word because it will be rejected."
       }
     }    
   },
